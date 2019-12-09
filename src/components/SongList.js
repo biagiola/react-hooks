@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; //imr
 import uuid from 'uuid/v1';
+import NewSongForm from './NewSongForm';
 
 const SongList = () => { //sfc
 
@@ -8,8 +9,8 @@ const SongList = () => { //sfc
     { id: 2, band: 'DMAS', title: 'Silver', year: 2019}
   ]);
 
-  const addSong = () => {
-    setSongs([...songs, { band: 'Oasis', title: 'new song added', id: uuid() }]);
+  const addSong = (title) => {
+    setSongs([...songs, { band: 'Oasis', title: title, id: uuid() }]);
   }
 
   return (
@@ -19,7 +20,7 @@ const SongList = () => { //sfc
           return ( <li key={song.id}> {song.band} - {song.title}</li> )
         })}
       </ul>
-      <button onClick={addSong}>Add a song</button>
+      <NewSongForm addSong={addSong }/>
     </div>
   );
 }
